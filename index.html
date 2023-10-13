@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Temperature Converter</h1>
+      <form id="temperature-form">
+        <label for="fahrenheit">Fahrenheit:</label>
+        <input type="number" id="fahrenheit" placeholder="Enter Fahrenheit" />
+        <label for="celsius">Celsius:</label>
+        <input type="number" id="celsius" placeholder="Enter Celsius" />
+        <button type="submit">Convert</button>
+      </form>
+      <div id="result" class="result"></div>
+    </div>
+    <script>
+        // Get input elements
+        const fahrenheitInput = document.getElementById('fahrenheit');
+        const celsiusInput = document.getElementById('celsius');
+        const resultElement = document.getElementById('result');
+      
+        // Add event listener for the form submission
+        document.getElementById('temperature-form').addEventListener('submit', function (e) {
+          e.preventDefault();
+          convertTemperature();
+        });
+      
+        function convertTemperature() {
+          const fahrenheit = parseFloat(fahrenheitInput.value);
+          const celsius = parseFloat(celsiusInput.value);
+      
+          if (!isNaN(fahrenheit)) {
+            // Convert Fahrenheit to Celsius
+            const convertedCelsius = ((fahrenheit - 32) * 5) / 9;
+            celsiusInput.value = convertedCelsius.toFixed(2);
+            resultElement.textContent = `${fahrenheit}°F is ${convertedCelsius.toFixed(2)}°C`;
+          } else if (!isNaN(celsius)) {
+            // Convert Celsius to Fahrenheit
+            const convertedFahrenheit = (celsius * 9) / 5 + 32;
+            fahrenheitInput.value = convertedFahrenheit.toFixed(2);
+            resultElement.textContent = `${celsius}°C is ${convertedFahrenheit.toFixed(2)}°F`;
+          } else {
+            resultElement.textContent = 'Please enter a valid number.';
+          }
+        }
+      </script>
+      
+  </body>
+</html>
